@@ -19,3 +19,6 @@ pillow / imageio / opencv-python
 ＊ライブラリを使わずに書いたフルスクラッチ版
 PNG 8bit-gray / 16bit-gray 両対応！
 
+・fits-Decorder / Fits-Debayer
+＊fitsファイル処理用(テスト中) PNGに変換します。
+
