@@ -1,8 +1,8 @@
 # 趣味のPython学習　Project 02-10
 # Python FITS DECODER
-# ばーじょん 0.0.1
+# ばーじょん 0.0.2
 
-ver = "0.0.1"
+ver = "0.0.2"
 
 from PIL import Image
 
@@ -85,19 +85,18 @@ while len( fnm := input("file : ") ) > 0 :
             for a2 in range(ax2) :
                 for a3 in range(ax3) :
                     dt = getdata(data,a1,a2,a3,axis)
-                    av = av + dt
+                    av = av + dt/ax1/ax2/ax3
                     if dt < mi :
                         mi = dt
                     if dt> mx :
                         mx = dt
 
-        av = av/ax1/ax2/ax3
-
-
         print(f"W:{wd} H:{ht}")
         print(f"MIN:{mi}")
         print(f"MAX:{mx}")
         print(f"AVE:{av}")
+
+        if mi > 0.0 : mi = 0.0
 
         print("*** CONVERT MODE ***")
 

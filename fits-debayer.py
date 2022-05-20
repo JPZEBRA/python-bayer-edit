@@ -1,8 +1,8 @@
 # 趣味のPython学習　Project 02-11
 # Python FITS DEBAYER
-# ばーじょん 0.0.1
+# ばーじょん 0.0.2
 
-ver = "0.0.1"
+ver = "0.0.2"
 
 from PIL import Image
 
@@ -21,7 +21,7 @@ def RGGB2x2(data,x,y) :
     gr2 = getdata(data,(x>>1)*2 + 0,(y>>1)*2 + 1)
     blu = getdata(data,(x>>1)*2 + 1,(y>>1)*2 + 1)
 
-    grn = (gr1+gr2)/2
+    grn = (float(gr1)+float(gr2))/2
 
     return (red,grn,blu)
 
@@ -69,18 +69,18 @@ while len( fnm := input("file : ") ) > 0 :
         for a1 in range(ax1) :
             for a2 in range(ax2) :
                 dt = getdata(data,a1,a2)
-                av = av + dt
+                av = av + dt/ax1/ax2
                 if dt < mi :
                     mi = dt
                 if dt> mx :
                     mx = dt
 
-        av = av/ax1/ax2
-
         print(f"W:{wd} H:{ht}")
         print(f"MIN:{mi}")
         print(f"MAX:{mx}")
         print(f"AVE:{av}")
+
+        if mi > 0.0 : mi = 0.0
 
         print("*** CONVERT MODE ***")
 
