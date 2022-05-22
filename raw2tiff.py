@@ -1,9 +1,8 @@
 # 趣味のPython学習　Project 02-12
 # Python RAW 2 TIFF CONVERTER
-# ばーじょん 0.1.0
+# ばーじょん 0.1.1
 
-ver = "0.1.0"
-
+ver = "0.1.1"
 
 # NEED THIS ! get 'pillow' with pip command !
 from PIL import Image
@@ -45,6 +44,7 @@ while len( fnm := input("file : ") ) > 0 :
         print("PATTERN:",clr)
         print(pat)
 
+        tif = raw.postprocess(demosaic_algorithm=RPY.DemosaicAlgorithm.LINEAR,output_bps=16)
         rgb = raw.postprocess(demosaic_algorithm=RPY.DemosaicAlgorithm.LINEAR,four_color_rgb=True,output_color=RPY.ColorSpace.raw,output_bps=16)
 
         print("*** READ OK ***")
@@ -59,7 +59,7 @@ while len( fnm := input("file : ") ) > 0 :
 
         fno = fnm + ".tif"
         print(f"*** SAVE : {fno}  ( 48bit color ) ***")
-        imageio.imsave(fno,rgb)
+        imageio.imsave(fno,tif)
 
         if type(pat) != numpy.ndarray : continue
 
