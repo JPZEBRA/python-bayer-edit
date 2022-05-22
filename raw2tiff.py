@@ -1,8 +1,8 @@
 # 趣味のPython学習　Project 02-12
 # Python RAW 2 TIFF CONVERTER
-# ばーじょん 0.1.1
+# ばーじょん 0.1.2
 
-ver = "0.1.1"
+ver = "0.1.2"
 
 # NEED THIS ! get 'pillow' with pip command !
 from PIL import Image
@@ -34,6 +34,8 @@ while len( fnm := input("file : ") ) > 0 :
 
         raw = RPY.imread(fnm)
 
+        tif = raw.postprocess(demosaic_algorithm=RPY.DemosaicAlgorithm.LINEAR,output_bps=16)
+
         width  = raw.sizes.width
         height = raw.sizes.height
         clr    = raw.color_desc
@@ -43,9 +45,6 @@ while len( fnm := input("file : ") ) > 0 :
 
         print("PATTERN:",clr)
         print(pat)
-
-        tif = raw.postprocess(demosaic_algorithm=RPY.DemosaicAlgorithm.LINEAR,output_bps=16)
-        rgb = raw.postprocess(demosaic_algorithm=RPY.DemosaicAlgorithm.LINEAR,four_color_rgb=True,output_color=RPY.ColorSpace.raw,output_bps=16)
 
         print("*** READ OK ***")
 
@@ -63,7 +62,9 @@ while len( fnm := input("file : ") ) > 0 :
 
         if type(pat) != numpy.ndarray : continue
 
-        fno = fnm + ".reb.png"
+        rgb = raw.postprocess(half_size=True,four_color_rgb=True,output_color=RPY.ColorSpace.raw,output_bps=16)
+
+        fno = fnm + ".rb.png"
         print(f"*** SAVE : {fno} ( 16bit bayer pattern ) ***")
 
         img_cv = Image.new('I;16',(width,height))
@@ -71,13 +72,12 @@ while len( fnm := input("file : ") ) > 0 :
         for y in range(height) :
             for x in range(width) :
 
-                if x%2 == 0 and y%2 == 0 : c = pat[0][0]
-                if x%2 == 1 and y%2 == 0 : c = pat[0][1]
-                if x%2 == 0 and y%2 == 1 : c = pat[1][0]
-                if x%2 == 1 and y%2 == 1 : c = pat[1][1]
-                if c == 3 : c = 1
+                if x%2 == 0 and y%2 == 0 : c = 0
+                if x%2 == 1 and y%2 == 0 : c = 1
+                if x%2 == 0 and y%2 == 1 : c = 3
+                if x%2 == 1 and y%2 == 1 : c = 2
 
-                img_cv.putpixel((x,y),int(rgb[y][x][c]))
+                img_cv.putpixel((x,y),int(rgb[y//2][x//2][c]))
 
         img_cv.save(fno)
 
