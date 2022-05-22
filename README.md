@@ -2,8 +2,10 @@
 EDIT BAYERED FILES (PNG/FITS/TIFF/RAW)
 
 天文関係のみなさまこんばんは…
-このPythonスクリプトは「SharpCapで保存」した
-「PNG形式のスナップショット」の変換をするものです。
+このPythonスクリプトは
+「SharpCapで保存」した
+「PNG形式のスナップショット」との
+相互変換をするものです。
 
 ・PNG08Debayer / PNG08Rebayer
 ＊8bit-grayの画像をTRUE COLORに
