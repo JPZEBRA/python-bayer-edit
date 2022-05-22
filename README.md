@@ -1,5 +1,5 @@
 # python-bayer-edit
-EDIT BAYERED PNG FILES
+EDIT BAYERED FILES (PNG/FITS/TIFF/RAW)
 
 天文関係のみなさまこんばんは…
 このPythonスクリプトは「SharpCapで保存」した
@@ -21,4 +21,9 @@ PNG 8bit-gray / 16bit-gray 両対応！
 
 ・Fits-Decorder / Fits-Debayer
 ＊fitsファイル処理用(テスト中) PNGに変換します。
+
+・raw2tiff
+＊raw 画像を読み込み tiff(48bit)とpng(bayerd)に変換します。
+
+
 
