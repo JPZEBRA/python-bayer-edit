@@ -242,3 +242,6 @@ while len( fnm := input("file : ") ) > 0 :
                         cv2.imwrite(fno,img_cv)
 
                         print("DONE !")
+
+#END OF FILE
+

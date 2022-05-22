@@ -376,3 +376,5 @@ while len( fnm := input("file : ") ) > 0 :
                         img_cv.save(fno)
 
                         print("DONE !")
+
+#END OF FILE
